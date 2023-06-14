@@ -1,8 +1,8 @@
 import random
 import codecs
 
+from bitstring import BitArray
 import numpy as np
-
 
 def bsc(binSeq, BER):
     seqL = len(str(binSeq))
@@ -18,25 +18,6 @@ def bsc(binSeq, BER):
         else:
             output.append(binSeq[i])
     return ''.join(output)
-'''
-def binario_para_utf8(binario):
-    bytes_utf8 = [binario[i:i+8] for i in range(0, len(binario), 8)]
-    bytes_decimais = [int(byte, 2) for byte in bytes_utf8]
-    utf8_bytes = bytes(bytes_decimais)
-    utf8_string = utf8_bytes.decode('utf-8')
-    return utf8_string
-'''
-def binario_para_utf8(binario):
-    bytes_utf8 = [binario[i:i+8] for i in range(0, len(binario), 8)]
-    bytes_decimais = [int(byte, 2) for byte in bytes_utf8]
-
-    utf8_bytes = bytearray(bytes_decimais)
-    try:
-        utf8_string = utf8_bytes.decode('utf-8', errors='replace')
-        return utf8_string
-    except UnicodeDecodeError:
-        print("Não foi possível decodificar a sequência binária como UTF-8.")
-        return ""
 
 def exeri(input, ber):
     #conversao para string binario
@@ -118,7 +99,6 @@ def exerii(input, ber):
     #decod
     temp = 0
     decod = ""
-    #erro a partir daqui
     while temp != len(bsc_ret):
         temp += 7
         m3 = int(bsc_ret[temp - 4])
@@ -192,21 +172,30 @@ def interleaving(str, row = 0, col = 0):
         if matrix[rows, cols] != "":
             lst.append(matrix[rows, cols])
     return "".join(lst)
+
+def binConvert(str):
+    binario = ""
+    for caracter in input:
+        valor_numerico = ord(caracter)
+        binario += bin(valor_numerico)[2:].zfill(8)  # Adiciona zeros à esquerda se necessário
+
+    if len(binario) % 8 != 0:
+        binario = binario.zfill(
+            (len(binario) // 8 + 1) * 8)  # Completa com zeros à esquerda se a sequência não for múltipla de 8
+
 def exerbi(input,BER,col, row):
     if len(input) < col * row:
         raise ValueError("col * row deve ser igual ou superior ao tamanho do input")
     teste = interleaving(input, row, col)
     print(f"Interleaving returns {teste}")
     print("\n")
-    seqBin = ''.join(format(ord(c), '08b') for c in teste)
+    seqBin = binConvert(teste)
     print(f"Conversão em binário {seqBin}")
     print("\n")
     teste1 = bsc(seqBin, BER)
     print(f"Após BSC {teste1}")
     print("\n")
-    #spaced_str = ' '.join([teste1[i:i + 8] for i in range(0, len(teste1), 8)])
-    #teste2 = ''.join([chr(int(byte, 2)) for byte in spaced_str.split()])
-    teste2 = teste1.decode('utf-8')
+    teste2 = binario_para_utf8(teste1)
     print(f"Conversão de novo a utf-8 {teste2}")
     teste3 = interleaving(teste2, col, row)
     print("\n")
@@ -248,6 +237,22 @@ def decodRep31(input):
             decod += "1"
         i += 3
     return decod
+
+def dividir_string(string, tamanho):
+    array = []
+    for i in range(0, len(string), tamanho):
+        parte = string[i:i+tamanho]
+        array.append(parte)
+    return array
+def bin_to_string(str):
+    binary = ""
+    new_str = dividir_string(str, 8)
+    for i in new_str:
+        decimal_number = int(i, 2)
+        utf8_character = chr(decimal_number)
+        binary += utf8_character
+    return binary
+
 def exerbii(input,BER,col, row):
     if len(input) < col * row:
         raise ValueError("col * row deve ser igual ou superior ao tamanho do input")
@@ -264,14 +269,10 @@ def exerbii(input,BER,col, row):
     print("\n")
     decon = decodRep31(teste1)
     print(f"Após Descodificação {decon}")
-    binary_list = [decon[i:i + 8] for i in
-                   range(0, len(decon), 8)]  # Split into separate binary strings of length 8
-
-    characters = [chr(int(binary, 2)) for binary in
-                  binary_list]  # Convert each binary string to its corresponding character
-    result = ''.join(characters)  # Concatenate the characters back into a string
-    print(f"Conversão de novo a utf-8 {result}")
-    teste3 = interleaving(result, col, row)
+    utf1 = bin_to_string(decon)
+    utf = bin_to_string(utf1)
+    print(f"UTF é {utf}")
+    teste3 = interleaving(utf, col, row)
     print("\n")
     print(f"De-interleaved é {teste3}")
 
@@ -298,6 +299,8 @@ def main():
     BER = 0
     #exerbi(input, BER, row, col)
     exerbii(input, BER, row, col)
+
+
 
 
 
