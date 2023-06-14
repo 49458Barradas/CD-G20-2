@@ -118,6 +118,7 @@ def exerii(input, ber):
     #decod
     temp = 0
     decod = ""
+    #erro a partir daqui
     while temp != len(bsc_ret):
         temp += 7
         m3 = int(bsc_ret[temp - 4])
@@ -135,6 +136,7 @@ def exerii(input, ber):
         sindroma[1] = str(b1 ^ b1_recalc)
         sindroma[0] = str(b0 ^ b0_recalc)
         sindroma = ''.join(sindroma)
+
         if sindroma == "011":
             if m0 == "0":
                 m0 = 1
@@ -159,10 +161,119 @@ def exerii(input, ber):
             else:
                 m3 = "0"
             decod += str(m0) + str(m1) + str(m2) + str(m3)
+        if sindroma=="000":
+            decod += str(m0) + str(m1) + str(m2) + str(m3)
     #print(sindroma)
     # bin to utf-8
     rtn = binario_para_utf8(decod)
-    print(rtn)
+    return rtn
+
+
+def interleaving(str, row = 0, col = 0):
+    length = len(str)
+    mtxL = row * col
+    if mtxL < length:
+        raise ValueError("str tem que ter dimensão igual ou inferior à matriz")
+    extras = mtxL - length
+    mtx = list(str)
+    while extras > 0:
+        mtx.append('')
+        extras -= 1
+    matrix = np.empty((row, col), dtype='U1')
+    for i in range(len(mtx)):
+        rows = i // col
+        cols = i % col
+        matrix[rows, cols] = mtx[i]
+    matrix = matrix.T
+    lst = []
+    for i in range(mtxL):
+        rows = i // row
+        cols = i % row
+        if matrix[rows, cols] != "":
+            lst.append(matrix[rows, cols])
+    return "".join(lst)
+def exerbi(input,BER,col, row):
+    if len(input) < col * row:
+        raise ValueError("col * row deve ser igual ou superior ao tamanho do input")
+    teste = interleaving(input, row, col)
+    print(f"Interleaving returns {teste}")
+    print("\n")
+    seqBin = ''.join(format(ord(c), '08b') for c in teste)
+    print(f"Conversão em binário {seqBin}")
+    print("\n")
+    teste1 = bsc(seqBin, BER)
+    print(f"Após BSC {teste1}")
+    print("\n")
+    #spaced_str = ' '.join([teste1[i:i + 8] for i in range(0, len(teste1), 8)])
+    #teste2 = ''.join([chr(int(byte, 2)) for byte in spaced_str.split()])
+    teste2 = teste1.decode('utf-8')
+    print(f"Conversão de novo a utf-8 {teste2}")
+    teste3 = interleaving(teste2, col, row)
+    print("\n")
+    print(f"De-interleaved é {teste3}")
+
+
+def codRep31(input):
+    # conversao para string binario
+    binario = ""
+    for caracter in input:
+        valor_numerico = ord(caracter)
+        binario += bin(valor_numerico)[2:].zfill(8)  # Adiciona zeros à esquerda se necessário
+
+    if len(binario) % 8 != 0:
+        binario = binario.zfill(
+            (len(binario) // 8 + 1) * 8)  # Completa com zeros à esquerda se a sequência não for múltipla de 8
+    # tecnica de repetição
+    cod = ""
+    for i in binario:
+        cod += i
+        cod += i
+        cod += i
+    return cod
+
+def decodRep31(input):
+    decod = ""
+    i = 0
+    while (i != len(input)):
+        ones = 0
+        zeros = 0
+        for v in range(i, i + 2):
+            if (input[v] == "1"):
+                ones += 1
+            else:
+                zeros += 1
+        if (zeros > ones):
+            decod += "0"
+        else:
+            decod += "1"
+        i += 3
+    return decod
+def exerbii(input,BER,col, row):
+    if len(input) < col * row:
+        raise ValueError("col * row deve ser igual ou superior ao tamanho do input")
+    teste = interleaving(input, row, col)
+    print(f"Interleaving returns {teste}")
+    print("\n")
+    seqBin = ''.join(format(ord(c), '08b') for c in teste)
+    print(f"Conversão em binário {seqBin}")
+    print("\n")
+    con = codRep31(seqBin)
+    print(f"Codificação Repetição (3,1) {con}")
+    teste1 = bsc(con, BER)
+    print(f"Após BSC {teste1}")
+    print("\n")
+    decon = decodRep31(teste1)
+    print(f"Após Descodificação {decon}")
+    binary_list = [decon[i:i + 8] for i in
+                   range(0, len(decon), 8)]  # Split into separate binary strings of length 8
+
+    characters = [chr(int(binary, 2)) for binary in
+                  binary_list]  # Convert each binary string to its corresponding character
+    result = ''.join(characters)  # Concatenate the characters back into a string
+    print(f"Conversão de novo a utf-8 {result}")
+    teste3 = interleaving(result, col, row)
+    print("\n")
+    print(f"De-interleaved é {teste3}")
 
 
 def read_file(path_to_file):
@@ -172,14 +283,23 @@ def read_file(path_to_file):
     return data
 
 def main():
-    file_data = read_file("alice29.txt")
+    #file_data = read_file("alice29.txt")
+    #exeri("ExemploDeTransmissaoInterleaving", 0)
     #print(file_data)
     #exeri(file_data, 10 ** -1)
     #exeri(file_data, 10 ** -2)
     #exeri(file_data, 10 ** -3)
     #exeri(file_data, 10 ** -4)
     #exeri(file_data, 10 ** -5)
-    exerii("a", 0)
+    #exerii("a", 0)
+    input = "ExemploDeTransmissaoInterleaving"
+    row = 4
+    col = 8
+    BER = 0
+    #exerbi(input, BER, row, col)
+    exerbii(input, BER, row, col)
+
+
 
 
 if __name__ == '__main__':
