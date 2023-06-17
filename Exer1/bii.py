@@ -74,13 +74,12 @@ def BER(before, after):
     new_ber = count / length
     return new_ber
 
-
 # Compara dois Strings e retorna o número de Caractéres distintos entre os dois
 def compareEqualStr(str1, str2):
     if len(str1) != len(str2):
         raise ValueError("Strings devem ter dimensões iguais")
     difs = 0
-    for i in range(0, len(str1) - 1):
+    for i in range(0, len(str1)):
         if str1[i] != str2[i]:
             difs += 1
     return difs
@@ -94,14 +93,13 @@ def interleaving(str):
     extra = mtxDim - length
     mtx = list(str)
     while extra > 0:
-        mtx.append(' ')
+        mtx.append('')
         extra -= 1
     matrix = np.empty((mV, mV), dtype='U1')
     for i in range(len(mtx)):
         row = i // mV
         col = i % mV
         matrix[row, col] = mtx[i]
-    print(matrix)
     matrix = matrix.T
     lst = []
     for i in range(mtxDim):
@@ -110,7 +108,6 @@ def interleaving(str):
         if matrix[rows, cols] != "":
             lst.append(matrix[rows, cols])
     return "".join(lst)
-
 
 # Codificador de Código de repetição(3,1)
 def codRep31(input):
@@ -121,7 +118,6 @@ def codRep31(input):
         cod += i
         cod += i
     return cod
-
 
 # Descodificador de Código de repetição(3,1)
 def decodRep31(input):
@@ -142,28 +138,28 @@ def decodRep31(input):
         i += 3
     return decod
 
-
 # Solução Exercicio
 def b(ber):
     # Leitura
     readFile = read_file("alice29.txt")
+    # Conversão
+    binSeq = binConvert(readFile)
     # Codificação
-    binSeq = codRep31(readFile)
+    cod = codRep31(binSeq)
     # Interleaving
-    interleaved = interleaving(binSeq)
+    interleaved = interleaving(cod)
     # BSC
     binSeqBSC = bsc(interleaved, ber)
     # desinterleaving
-    deinterleaved = interleaving(binSeq)
+    deinterleaved = interleaving(binSeqBSC)
     # Descodificação
     decod = decodRep31(deinterleaved)
+    # Reconversão
+    final = bin_to_string(deinterleaved)
+    # Contagem de BER
+    calc_ber = BER(binSeq, decod)
     # Numero total de bits que passam no BSC (one way)
     print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
-    # Reconversão
-    final = bin_to_string(binSeqBSC)
-
-    # Contagem de BER
-    calc_ber = BER(binSeq, binSeqBSC)
     # Comparação de BER's
     print(f"Given input BER was {ber} but calculated was {calc_ber}")
     # Numero de Símbolos diferentes nos transmitido e recebido

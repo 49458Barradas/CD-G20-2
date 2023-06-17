@@ -114,18 +114,17 @@ def interleaving(str):
 # Solução Exercicio
 def b(ber):
     # Leitura
-    # readFile = read_file("alice29.txt")
-    readFile = "Teste do Guilherme \n funciona?"
-    # Conversão
-    binSeq = binConvert(readFile)
+    readFile = read_file("alice29.txt")
     # Interleaving
-    interleaved = interleaving(binSeq)
+    interleaved = interleaving(readFile)
+    # Conversão
+    binSeq = binConvert(interleaved)
     # BSC
-    binSeqBSC = bsc(interleaved, ber)
-    # desinterleaving
-    deinterleaved = interleaving(binSeqBSC)
+    binSeqBSC = bsc(binSeq, ber)
     # Reconversão
-    final = bin_to_string(deinterleaved)
+    final = bin_to_string(binSeqBSC)
+    # desinterleaving
+    deinterleaved = interleaving(final)
     # Contagem de BER
     calc_ber = BER(binSeq, binSeqBSC)
     # Numero total de bits que passam no BSC (one way)
@@ -134,15 +133,13 @@ def b(ber):
     print(f"Given input BER was {ber} but calculated was {calc_ber}")
     # Numero de Símbolos diferentes nos transmitido e recebido
     symbDifs = compareEqualStr(readFile, final)
-    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido.")
+    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido. \n")
 
 
 def main():
     BER_TEST = [10 ** (-1), 10 ** (-2), 10 ** (-3), 10 ** (-4), 10 ** (-5)]
-    # for ber in BER_TEST:
-    # b(ber)
-    b(0)
-
+    for ber in BER_TEST:
+        b(ber)
 
 if __name__ == '__main__':
     main()
