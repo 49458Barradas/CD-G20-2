@@ -57,10 +57,6 @@ def dividir_string(string, tamanho):
 def bin_to_string(strng):
     binary = ""
     new_str = dividir_string(strng, 8)
-    # TESTE ERRO
-    for c in strng:
-        if c != "0" and c!="1":
-            print(f"Erro  {c}")
     for i in new_str:
         decimal_number = int(i, 2)
         utf8_character = chr(decimal_number)
@@ -89,6 +85,7 @@ def compareEqualStr(str1, str2):
             difs += 1
     return difs
 
+
 # Função de Interleaving
 def interleaving(str):
     length = len(str)
@@ -104,7 +101,6 @@ def interleaving(str):
         row = i // mV
         col = i % mV
         matrix[row, col] = mtx[i]
-    print(matrix)
     matrix = matrix.T
     lst = []
     for i in range(mtxDim):
@@ -114,17 +110,18 @@ def interleaving(str):
             lst.append(matrix[rows, cols])
     return "".join(lst)
 
+
 # Solução Exercicio
 def b(ber):
     # Leitura
-    #readFile = read_file("alice29.txt")
+    # readFile = read_file("alice29.txt")
     readFile = "Teste do Guilherme \n funciona?"
     # Conversão
     binSeq = binConvert(readFile)
     # Interleaving
     interleaved = interleaving(binSeq)
     # BSC
-    binSeqBSC = bsc(binSeq, ber)
+    binSeqBSC = bsc(interleaved, ber)
     # desinterleaving
     deinterleaved = interleaving(binSeqBSC)
     # Reconversão
@@ -136,14 +133,14 @@ def b(ber):
     # Comparação de BER's
     print(f"Given input BER was {ber} but calculated was {calc_ber}")
     # Numero de Símbolos diferentes nos transmitido e recebido
-    symbDifs = compareEqualStr(readFile, deinterleaved)
+    symbDifs = compareEqualStr(readFile, final)
     print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido.")
 
 
 def main():
     BER_TEST = [10 ** (-1), 10 ** (-2), 10 ** (-3), 10 ** (-4), 10 ** (-5)]
-    #for ber in BER_TEST:
-        #b(ber)
+    # for ber in BER_TEST:
+    # b(ber)
     b(0)
 
 
