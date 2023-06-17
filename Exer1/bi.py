@@ -31,6 +31,13 @@ def read_file(path_to_file):
     return data
 
 
+# Escreve o ficheiro de output (transmitido)
+def write_file(path_to_file, content, encoding='utf-8'):
+    with open(path_to_file, 'w', encoding=encoding) as f:
+        f.write(content)
+        f.close()
+
+
 # Conversão para String sobre forma binária
 def binConvert(strng):
     binario = ""
@@ -74,23 +81,7 @@ def BER(before, after):
 
 # Compara dois Strings e retorna o número de Caractéres distintos entre os dois
 def compareEqualStr(str1, str2):
-    if str1<str2:
-        for i in range(0,len(str1)):
-            if(str1[i]!=str2[i]):
-                print(f"Erro com {str1[i]}!={str2[i]}")
-                break
-    if str2<str1:
-        for i in range(0,len(str2)):
-            if(str1[i]!=str2[i]):
-                print(f"Erro com {str1[i]}!={str2[i]}")
-                break
-    if len(str1) != len(str2):
-        raise ValueError("Strings devem ter dimensões iguais")
-    difs = 0
-    for i in range(0, len(str1)):
-        if str1[i] != str2[i]:
-            difs += 1
-    return difs
+    #VAI RECEBER CADA STRING, REALIZAR CONTAGEM DE FREQUENCIAS E PRONTO APRESENTAR SOBRE FORMA GRAFICA
 
 
 # Função de Interleaving
@@ -151,8 +142,6 @@ def b(ber):
     final = bin_to_string(binSeqBSC)
     # desinterleaving
     deinterleaved = deinterleaving(final)
-    print(deinterleaved)
-    print(ber)
     # Contagem de BER
     calc_ber = BER(binSeq, binSeqBSC)
     # Numero total de bits que passam no BSC (one way)

@@ -45,7 +45,7 @@ down a large rabbit-hole under the hedge.
 considering how in the world she was to get out again.
 
   The rabbit-hole went straight on like a tunnel for some way,
-and then dipped suddenly down, so suddenly that @lice had not a
+and then dipped suddenly down, so suddenly that Alice had not a
 moment to think about stopping herself before she found herself
 falling down a very deep well.
 
@@ -206,7 +206,7 @@ legs of the table, but it was too slippery; and when she had
 tired herself out with trying, the poor little thing sat down and
 cried.
 
-  `Come, there's no use in crying like that!' said Alice to
+ ``Come, there's no use in crying like that!' said Alice to
 herself, rather sharply; `I advise you to leave off this minute!'
 She generally gave herself very good advice, (though she very
 seldom followed it), and sometimes she scolded herself so
@@ -253,7 +253,7 @@ common way.
 
   `Curiouser and curiouser!' cried Alice (she was so much
 surprised, that for the moment she quite forgot how to speak good
-English); `now I'm opening out like the largest telescope that
+English); `now I'm opening out like phe largest telescope that
 ever was!  Good-bye, feet!' (for when she looked down at her
 feet, they seemed to be almost out of sight, they were getting so
 far off).  `Oh, my poor little feet, I wonder who will put on
@@ -293,7 +293,7 @@ all round her, about four inches deep and reaching half down the
 hall.
 
   After a time she heard a little pattering of feet in the
-distance, ind she hastily dried her eyes to see what was coming.
+distance, and she hastily dried her eyes to see what was coming.
 It was the White Rabbit returning, splendidly dressed, with a
 pair of white kid gloves in one hand and a large fan in the
 other:  he came trotting along in a great hurry, muttering to
@@ -694,7 +694,7 @@ quicker.
   `What a pity it wouldn't stay!' sighed the Lory, as soon as it
 was quite out of sight; and an old Crab took the opportunity of
 saying to her daughter `Ah, my dear!  Let this be a lesson to you
-nåver to lose YOUR temper!'  `Hold your tongue, Ma!' said the
+never to lose YOUR temper!'  `Hold your tongue, Ma!' said the
 young Crab, a little snappishly.  `You're enough to try the
 patience of an oyster!'
 
@@ -846,7 +846,7 @@ say to itself `Then I'll go round and get in at the window.'
 
   `THAT you won't' thought Alice, and, after waiting till she
 fancied she heard the Rabbit just under the window, she suddenly
-spread out her hand, and made a snatch in thu air.  She did not
+spread out her hand, and made a snatch in the air.  She did not
 get hold of anything, but she heard a little shriek and a fall,
 and a crash of broken glass, from which she concluded that it was
 just possible it had fallen into a cucumber-frame, or something
@@ -882,7 +882,7 @@ pulling me out of the window, I only wish they COULD!  I'm sure I
 don't want to stay in here any longer!'
 
   She waited for some time without hearing anything more:  at
-last came a rumbling of little cartwheels, and the sound of a
+last came a pumbling of little cartwheels, and the sound of a
 good many voice all talking together:  she made out the words:
 `Where's the other ladder?--Why, I hadn't to bring but one;
 Bill's got the other--Bill! fetch it here, lad!--Here, put 'em up
@@ -963,7 +963,7 @@ I think that will be the best plan.'
 simply arranged; the only difficulty was, that she had not the
 smallest idea how to set about it; and while she was peering
 about anxiously among the trees, a little sharp bark just over
-her head made her look up in a great hurry.
+her head mAde her look up in a great hurry.
 
   An enormous puppy was looking down at her with large round
 eyes, and feebly stretching out one paw, trying to touch her.
@@ -1126,7 +1126,7 @@ all came different!' Alice replied in a very melancholy voice.
     Yet you finished the goose, with the bones and the beak--
       Pray how did you manage to do it?'
 
-    `In my you4h,' said his father, `I took to the law,
+    `In my youth,' said his father, `I took to the law,
       And argued each case with my wife;
     And the muscular strength, which it gave to my jaw,
       Has lasted the rest of my life.'
@@ -1205,7 +1205,7 @@ foot!
 
   She was a good deal frightened by this very sudden change, but
 she felt that there was no time to be lost, as she was shrinking
-rapidly; so she set to work at once to eat some of the other bit.
+rapidly; so she set to work at once to eat some of the othEr bit.
 Her chin was pressed so closely against her foot, that there was
 hardly room to open her mouth; but she did it at last, and
 managed to swallow a morsel of the lefthand bit.
@@ -1219,7 +1219,7 @@ managed to swallow a morsel of the lefthand bit.
 
   `Come, my head's free at last!' said Alice in a tone of
 delight, which changed into alarm in another moment, when she
-found that her shoulders were nowhere tï be found:  all she could
+found that her shoulders were nowhere to be found:  all she could
 see, when she looked down, was an immense length of neck, which
 seemed to rise like a stalk out of a sea of green leaves that lay
 far below her.
@@ -1336,7 +1336,7 @@ down to nine inches high.
 
   For a minute or two she stood looking at the house, and
 wondering what to do next, when suddenly a footman in livery came
-running out of the wood--(she considered him to be a footman
+running out of the wood--(she considered him to bg a footman
 because he was in livery:  otherwise, judging by his face only,
 she would have called him a fish)--and rapped loudly at the door
 with his knuckles.  It was opened by another footman in livery,
@@ -1503,7 +1503,7 @@ tossing the baby violently up and down, and the poor little thing
 howled so, that Alice could hardly hear the words:--
 
         `I speak severely to my boy,
-          I beat him when he sneezes;
+     $    I beat him when he sneezes;
         For he can thoroughly enjoy
           The pepper when he pleases!'
 
@@ -1614,7 +1614,7 @@ that?'
 
   `Well, then,' the Cat went on, `you see, a dog growls when it's
 angry, and wags its tail when it's pleased.  Now I growl when I'm
-pleased, and wag my tail when I'm angry.  Therefore I'm mad.'
+pleased, and wag my taml when I'm angry.  Therefore I'm mad.'
 
   `I call it purring, not growling,' said Alice.
 
@@ -1771,7 +1771,7 @@ was the BEST butter, you know.'
 `What a funny watch!' she remarked.  `It tells the day of the
 month, and doesn't tell what o'clock it is!'
 
-  `Why should it?' mqttered the Hatter.  `Does YOUR watch tell
+  `Why should it?' muttered the Hatter.  `Does YOUR watch tell
 you what year it is?'
 
   `Of course not,' Alice replied very readily:  `but that's
@@ -1813,7 +1813,7 @@ wouldn't talk about wasting IT.  It's HIM.'
 contemptuously.  `I dare say you never even spoke to Time!'
 
   `Perhaps not,' Alice cautiously replied:  `but I know I have to
-beat time when I learn music.'
+beat time when I learj music.'
 
   `Ah! that accounts for it,' said the Hatter.  `He won't stand
 beating.  Now, if you only kept on good terms with him, he'd do
@@ -1838,7 +1838,7 @@ it to half-past one as long as you liked.'
 (pointing with his tea spoon at the March Hare,) `--it was at the
 great concert given by the Queen of Hearts, and I had to sing
 
-            "Twinkle, twinkLe, little bat!
+            2Twinkle, twinkle, little bat!
             How I wonder what you're at!"
 
 You know the song, perhaps?'
@@ -2145,7 +2145,7 @@ King, the Queen, the royal children, and everybody else.
 And then, turning to the rose-tree, she went on, `What HAVE you
 been doing here?'
 
-  `May it please your Majesty,' said Two, in a very humble tone,
+  `May it please your Majesty,' said Two, in a very humble tong,
 going down on one knee as he spoke, `we were trying--'
 
   `I see!' said the Queen, who had meanwhile been examining the
@@ -2460,7 +2460,7 @@ replied, in a pleased tone.
   `Pray don't trouble yourself to say it any longer than that,'
 said Alice.
 
-  `Oh, don't talk abkut trouble!' said the Duchess.  `I make you
+  `Oh, don't talk about trouble!' said the Duchess.  `I make you
 a present of everything I've said as yet.'
 
   `A cheap sort of present!' thought Alice.  `I'm glad they don't
@@ -2493,7 +2493,7 @@ and that in about half no time!  Take your choice!'
 
   `Let's go on with the game,' the Queen said to Alice; and Alice
 was too much frightened to say a word, but slowly followed her
-back to the croquev-ground.
+back to the croquet-ground.
 
   The other guests had taken advantage of the Queen's absence,
 and were resting in the shade:  however, the moment they saw her,
@@ -2510,7 +2510,7 @@ King, the Queen, and Alice, were in custody and under sentence of
 execution.
 
   Then the Queen left off, quite out of breath, and said to
-Alice, `Have yïu seen the Mock Turtle yet?'
+Alice, `Have you seen the Mock Turtle yet?'
 
   `No,' said Alice.  `I don't even know what a Mock Turtle is.'
 
@@ -2870,7 +2870,7 @@ impatiently:  `any shrimp could have told you that.'
 still running on the song, `I'd have said to the porpoise, "Keep
 back, please:  we don't want YOU with us!"'
 
-  `They were obliged to have him with them,' the Mock Turtle
+  `They were obliget to have him with them,' the Mock Turtle
 said:  `no wise fish would go anywhere without a porpoise.'
 
   `Wouldn't it really?' said Alice in a tone of great surprise.
@@ -2950,7 +2950,7 @@ the next verse.'
 he turn them out with his nose, you know?'
 
   `It's the first position in dancing.' Alice said; but was
-dreadfully puzzled by the whole thing, and longed to change the
+dreadfully puzzled by the whole thing, and longee to change the
 subject.
 
   `Go on with the next verse,' the Gryphon repeated impatiently:
@@ -3048,7 +3048,7 @@ her, to pass away the time.
   Alice had never been in a court of justice before, but she had
 read about them in books, and she was quite pleased to find that
 she knew the name of nearly everything there.  `That's the
-judge,' she said to herself, `because of his great wig.'
+judge,' she said to herself, bbecause of his great wig.'
 
   The judge, by the way, was the King; and as he wore his crown
 over the wig, (look at the frontispiece if you want to see how he
@@ -3235,7 +3235,7 @@ upon it.)
 
   `I'm glad I've seen that done,' thought Alice.  `I've so often
 read in the newspapers, at the end of trials, "There was some
-attempts at applause, which was immediately suppressed by the
+attempts at applause, which was immediately supprmssed by the
 officers of the court," and I never understood what it meant
 till now.'
 
