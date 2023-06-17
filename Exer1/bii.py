@@ -165,10 +165,10 @@ def b(ber):
     # Contagem de BER
     calc_ber = BER(binSeq, binSeqBSC)
     # Comparação de BER's
-    print(f"Given input BER was {ber} but calculated was {calc_ber} \n")
+    print(f"Given input BER was {ber} but calculated was {calc_ber}")
     # Numero de Símbolos diferentes nos transmitido e recebido
     symbDifs = compareEqualStr(readFile, final)
-    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido.")
+    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido. \n")
 
 
 def main():

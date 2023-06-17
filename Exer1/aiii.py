@@ -87,6 +87,12 @@ def codHamming74(binario):
             b1 = m0 ^ m1 ^ m3
             b2 = m0 ^ m2 ^ m3
             cod += str(m0) + str(m1) + str(m2) + str(m3) + str(b0) + str(b1) + str(b2)
+        else:
+            # Lidar com os bits restantes que não formam um segmento completo de 4 bits
+            # Caso não seja múltiplo de 4, você pode decidir como tratar esses bits extras.
+            # Por exemplo, pode ignorá-los ou fazer algum tipo de preenchimento.
+            print("CHEGUEI")
+            pass
     return cod
 
 #Descodificação de Hammington(7,4)
@@ -111,32 +117,26 @@ def decodHamming74(binario):
         sindroma[0] = str(b0 ^ b0_recalc)
         sindroma = ''.join(sindroma)
         if sindroma == "011":
-            if m0 == "0":
+            if m0 == 0:
                 m0 = 1
             else:
-                m0 = "0"
-            decod += str(m0) + str(m1) + str(m2) + str(m3)
+                m0 = 0
         if sindroma == "110":
-            if m1 == "0":
+            if m1 == 0:
                 m1 = 1
             else:
-                m1 = "0"
-            decod += str(m0) + str(m1) + str(m2) + str(m3)
+                m1 = 0
         if sindroma == "101":
-            if m2 == "0":
+            if m2 == 0:
                 m2 = 1
             else:
                 m2 = "0"
-            decod += str(m0) + str(m1) + str(m2) + str(m3)
         if sindroma == "111":
-            if m3 == "0":
+            if m3 == 0:
                 m3 = 1
             else:
-                m3 = "0"
-            decod += str(m0) + str(m1) + str(m2) + str(m3)
-        if sindroma == "000":
-            decod += str(m0) + str(m1) + str(m2) + str(m3)
-
+                m3 = 0
+        decod += str(m0) + str(m1) + str(m2) + str(m3)
     return decod
 
 # Compara dois Strings e retorna o número de Caractéres distintos entre os dois
@@ -155,14 +155,12 @@ def a(ber):
     readFile = read_file("alice29.txt")
     # Conversão
     binSeq = binConvert(readFile)
-    print(len(binSeq))
     # Codificação
     cod = codHamming74(binSeq)
     # BSC
     binSeqBSC = bsc(cod, ber)
     # Descodificação
     decod = decodHamming74(binSeqBSC)
-    print(len(decod))
     # Reconversão
     final = bin_to_string(decod)
     # Contagem de BER
@@ -170,17 +168,16 @@ def a(ber):
     # Numero total de bits que passam no BSC (one way)
     print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Apresentação de Resultados
-    print(f"Given input BER was {ber} but calculated was {calc_ber} \n")
+    print(f"Given input BER was {ber} but calculated was {calc_ber}")
     # Numero de Símbolos diferentes nos transmitido e recebido
     symbDifs = compareEqualStr(readFile, final)
-    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido.")
+    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido. \n")
 
 
 def main():
     BER_TEST = [10**(-1), 10**(-2), 10**(-3), 10**(-4), 10**(-5)]
-    #for ber in BER_TEST:
-        #a(ber)
-    a(0.01)
+    for ber in BER_TEST:
+        a(ber)
 
 
 if __name__ == '__main__':
