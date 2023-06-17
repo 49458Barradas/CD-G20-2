@@ -30,6 +30,13 @@ def read_file(path_to_file):
     return data
 
 
+# Escreve o ficheiro de output (transmitido)
+def write_file(path_to_file, content, encoding='utf-8'):
+    with open(path_to_file, 'w', encoding=encoding) as f:
+        f.write(content)
+        f.close()
+
+
 # Conversão para String sobre forma binária
 def binConvert(strng):
     binario = ""
@@ -130,6 +137,8 @@ def a(ber):
     decod = decodRep31(binSeqBSC)
     # Reconversão
     final = bin_to_string(decod)
+    # Escrita no output
+    write_file("posalice29.txt", final)
     # Contagem de BER
     calc_ber = BER(binSeq, decod)
     # Numero total de bits que passam no BSC (one way)
@@ -145,6 +154,8 @@ def main():
     BER_TEST = [10 ** (-1), 10 ** (-2), 10 ** (-3), 10 ** (-4), 10 ** (-5)]
     for ber in BER_TEST:
         a(ber)
+
+
 ###############################################################
 # FUNCIONAL
 ###############################################################

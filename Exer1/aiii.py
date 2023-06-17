@@ -30,6 +30,13 @@ def read_file(path_to_file):
     return data
 
 
+# Escreve o ficheiro de output (transmitido)
+def write_file(path_to_file, content, encoding='utf-8'):
+    with open(path_to_file, 'w', encoding=encoding) as f:
+        f.write(content)
+        f.close()
+
+
 # Conversão para String sobre forma binária
 def binConvert(strng):
     binario = ""
@@ -62,7 +69,8 @@ def bin_to_string(strng):
         binary += utf8_character
     return binary
 
-#Calcula BER
+
+# Calcula BER
 def BER(before, after):
     length = len(after)
     count = 0
@@ -72,7 +80,8 @@ def BER(before, after):
     new_ber = count / length
     return new_ber
 
-#Codificação de Hamming(7,4)
+
+# Codificação de Hamming(7,4)
 def codHamming74(binario):
     temp = 0
     cod = ""
@@ -95,7 +104,8 @@ def codHamming74(binario):
             pass
     return cod
 
-#Descodificação de Hammington(7,4)
+
+# Descodificação de Hammington(7,4)
 def decodHamming74(binario):
     temp = 0
     decod = ""
@@ -139,15 +149,17 @@ def decodHamming74(binario):
         decod += str(m0) + str(m1) + str(m2) + str(m3)
     return decod
 
+
 # Compara dois Strings e retorna o número de Caractéres distintos entre os dois
 def compareEqualStr(str1, str2):
     if len(str1) != len(str2):
         raise ValueError("Strings devem ter dimensões iguais")
     difs = 0
-    for i in range(0, len(str2)-1):
+    for i in range(0, len(str2) - 1):
         if str1[i] != str2[i]:
             difs += 1
     return difs
+
 
 # Solução Exercicio
 def a(ber):
@@ -163,6 +175,8 @@ def a(ber):
     decod = decodHamming74(binSeqBSC)
     # Reconversão
     final = bin_to_string(decod)
+    # Escrita no output
+    write_file("posalice29.txt", final)
     # Contagem de BER
     calc_ber = BER(binSeq, decod)
     # Numero total de bits que passam no BSC (one way)
@@ -175,9 +189,11 @@ def a(ber):
 
 
 def main():
-    BER_TEST = [10**(-1), 10**(-2), 10**(-3), 10**(-4), 10**(-5)]
+    BER_TEST = [10 ** (-1), 10 ** (-2), 10 ** (-3), 10 ** (-4), 10 ** (-5)]
     for ber in BER_TEST:
         a(ber)
+
+
 ###############################################################
 # FUNCIONAL
 ###############################################################

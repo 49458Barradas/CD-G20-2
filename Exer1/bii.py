@@ -86,6 +86,7 @@ def compareEqualStr(str1, str2):
 
 
 # Função de Interleaving
+# Função de Interleaving
 def interleaving(str):
     length = len(str)
     mV = int(np.ceil(np.sqrt(length)))
@@ -93,7 +94,7 @@ def interleaving(str):
     extra = mtxDim - length
     mtx = list(str)
     while extra > 0:
-        mtx.append('')
+        mtx.append('ý')
         extra -= 1
     matrix = np.empty((mV, mV), dtype='U1')
     for i in range(len(mtx)):
@@ -105,10 +106,28 @@ def interleaving(str):
     for i in range(mtxDim):
         rows = i // mV
         cols = i % mV
-        if matrix[rows, cols] != "":
-            lst.append(matrix[rows, cols])
+        lst.append(matrix[rows, cols])
     return "".join(lst)
 
+# Função de Interleaving
+def deinterleaving(str):
+    length = len(str)
+    mV = int(np.ceil(np.sqrt(length)))
+    mtxDim = (mV ** 2)
+    mtx = list(str)
+    matrix = np.empty((mV, mV), dtype='U1')
+    for i in range(len(mtx)):
+        row = i // mV
+        col = i % mV
+        matrix[row, col] = mtx[i]
+    matrix = matrix.T
+    lst = []
+    for i in range(mtxDim):
+        rows = i // mV
+        cols = i % mV
+        if matrix[rows, cols] != 'ý':
+            lst.append(matrix[rows, cols])
+    return "".join(lst)
 # Codificador de Código de repetição(3,1)
 def codRep31(input):
     # tecnica de repetição
@@ -142,28 +161,28 @@ def decodRep31(input):
 def b(ber):
     # Leitura
     readFile = read_file("alice29.txt")
+    # Interleaving
+    interleaved = interleaving(readFile)
     # Conversão
-    binSeq = binConvert(readFile)
+    binSeq = binConvert(interleaved)
     # Codificação
     cod = codRep31(binSeq)
-    # Interleaving
-    interleaved = interleaving(cod)
     # BSC
-    binSeqBSC = bsc(interleaved, ber)
-    # desinterleaving
-    deinterleaved = interleaving(binSeqBSC)
+    binSeqBSC = bsc(cod, ber)
     # Descodificação
-    decod = decodRep31(deinterleaved)
+    decod = decodRep31(binSeqBSC)
     # Reconversão
-    final = bin_to_string(deinterleaved)
+    final = bin_to_string(decod)
+    # desinterleaving
+    deinterleaved = deinterleaving(final)
     # Contagem de BER
-    calc_ber = BER(binSeq, decod)
+    calc_ber = BER(binSeq, binSeq)
     # Numero total de bits que passam no BSC (one way)
     print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Comparação de BER's
     print(f"Given input BER was {ber} but calculated was {calc_ber}")
     # Numero de Símbolos diferentes nos transmitido e recebido
-    symbDifs = compareEqualStr(readFile, final)
+    symbDifs = compareEqualStr(readFile, deinterleaved)
     print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido. \n")
 
 

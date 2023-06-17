@@ -43,7 +43,6 @@ def binConvert(strng):
             (len(binario) // 8 + 1) * 8)  # Completa com zeros à esquerda se a sequência não for múltipla de 8
     return binario
 
-
 # Separa o string de binario em array de bytes de string
 def dividir_string(string, tamanho):
     array = []
@@ -52,8 +51,7 @@ def dividir_string(string, tamanho):
         array.append(parte)
     return array
 
-
-# Converte string binario para string
+# Conversão de binário para string
 def bin_to_string(strng):
     binary = ""
     new_str = dividir_string(strng, 8)
@@ -62,7 +60,6 @@ def bin_to_string(strng):
         utf8_character = chr(decimal_number)
         binary += utf8_character
     return binary
-
 
 # Calcula BER
 def BER(before, after):
@@ -77,6 +74,16 @@ def BER(before, after):
 
 # Compara dois Strings e retorna o número de Caractéres distintos entre os dois
 def compareEqualStr(str1, str2):
+    if str1<str2:
+        for i in range(0,len(str1)):
+            if(str1[i]!=str2[i]):
+                print(f"Erro com {str1[i]}!={str2[i]}")
+                break
+    if str2<str1:
+        for i in range(0,len(str2)):
+            if(str1[i]!=str2[i]):
+                print(f"Erro com {str1[i]}!={str2[i]}")
+                break
     if len(str1) != len(str2):
         raise ValueError("Strings devem ter dimensões iguais")
     difs = 0
@@ -94,7 +101,7 @@ def interleaving(str):
     extra = mtxDim - length
     mtx = list(str)
     while extra > 0:
-        mtx.append('')
+        mtx.append('ý')
         extra -= 1
     matrix = np.empty((mV, mV), dtype='U1')
     for i in range(len(mtx)):
@@ -106,7 +113,26 @@ def interleaving(str):
     for i in range(mtxDim):
         rows = i // mV
         cols = i % mV
-        if matrix[rows, cols] != "":
+        lst.append(matrix[rows, cols])
+    return "".join(lst)
+
+# Função de Interleaving
+def deinterleaving(str):
+    length = len(str)
+    mV = int(np.ceil(np.sqrt(length)))
+    mtxDim = (mV ** 2)
+    mtx = list(str)
+    matrix = np.empty((mV, mV), dtype='U1')
+    for i in range(len(mtx)):
+        row = i // mV
+        col = i % mV
+        matrix[row, col] = mtx[i]
+    matrix = matrix.T
+    lst = []
+    for i in range(mtxDim):
+        rows = i // mV
+        cols = i % mV
+        if matrix[rows, cols] != 'ý':
             lst.append(matrix[rows, cols])
     return "".join(lst)
 
@@ -124,7 +150,9 @@ def b(ber):
     # Reconversão
     final = bin_to_string(binSeqBSC)
     # desinterleaving
-    deinterleaved = interleaving(final)
+    deinterleaved = deinterleaving(final)
+    print(deinterleaved)
+    print(ber)
     # Contagem de BER
     calc_ber = BER(binSeq, binSeqBSC)
     # Numero total de bits que passam no BSC (one way)
@@ -132,14 +160,15 @@ def b(ber):
     # Comparação de BER's
     print(f"Given input BER was {ber} but calculated was {calc_ber}")
     # Numero de Símbolos diferentes nos transmitido e recebido
-    symbDifs = compareEqualStr(readFile, final)
+    symbDifs = compareEqualStr(readFile, deinterleaved)
     print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido. \n")
 
 
 def main():
     BER_TEST = [10 ** (-1), 10 ** (-2), 10 ** (-3), 10 ** (-4), 10 ** (-5)]
-    for ber in BER_TEST:
-        b(ber)
+    #for ber in BER_TEST:
+        #b(ber)
+    b(0.01)
 
 if __name__ == '__main__':
     main()
