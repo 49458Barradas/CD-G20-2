@@ -57,6 +57,10 @@ def dividir_string(string, tamanho):
 def bin_to_string(strng):
     binary = ""
     new_str = dividir_string(strng, 8)
+    # TESTE ERRO
+    for c in strng:
+        if c != "0" and c!="1":
+            print(f"Erro  {c}")
     for i in new_str:
         decimal_number = int(i, 2)
         utf8_character = chr(decimal_number)
@@ -64,6 +68,7 @@ def bin_to_string(strng):
     return binary
 
 
+# Calcula BER
 def BER(before, after):
     length = len(after)
     count = 0
@@ -79,11 +84,10 @@ def compareEqualStr(str1, str2):
     if len(str1) != len(str2):
         raise ValueError("Strings devem ter dimensões iguais")
     difs = 0
-    for i in range(0, len(str1) - 1):
+    for i in range(0, len(str1)):
         if str1[i] != str2[i]:
             difs += 1
     return difs
-
 
 # Função de Interleaving
 def interleaving(str):
@@ -93,7 +97,7 @@ def interleaving(str):
     extra = mtxDim - length
     mtx = list(str)
     while extra > 0:
-        mtx.append(' ')
+        mtx.append('')
         extra -= 1
     matrix = np.empty((mV, mV), dtype='U1')
     for i in range(len(mtx)):
@@ -110,40 +114,39 @@ def interleaving(str):
             lst.append(matrix[rows, cols])
     return "".join(lst)
 
-
 # Solução Exercicio
 def b(ber):
     # Leitura
-    readFile = read_file("alice29.txt")
+    #readFile = read_file("alice29.txt")
+    readFile = "Teste do Guilherme \n funciona?"
     # Interleaving
     interleaved = interleaving(readFile)
-    # desinterleaving
-    deinterleaved = interleaving(interleaved)
-    print(deinterleaved)
     # Conversão
-    binSeq = binConvert(readFile)
+    binSeq = binConvert(interleaved)
     # BSC
     binSeqBSC = bsc(binSeq, ber)
-    # Numero total de bits que passam no BSC (one way)
-    print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Reconversão
     final = bin_to_string(binSeqBSC)
-
-
+    # desinterleaving
+    deinterleaved = interleaving(final)
     # Contagem de BER
     calc_ber = BER(binSeq, binSeqBSC)
+    print(interleaved)
+    print(deinterleaved)
+    # Numero total de bits que passam no BSC (one way)
+    #print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Comparação de BER's
-    print(f"Given input BER was {ber} but calculated was {calc_ber} \n")
+    #print(f"Given input BER was {ber} but calculated was {calc_ber} \n")
     # Numero de Símbolos diferentes nos transmitido e recebido
-    symbDifs = compareEqualStr(readFile, final)
-    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido.")
+    symbDifs = compareEqualStr(readFile, deinterleaved)
+    #print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido.")
 
 
 def main():
     BER_TEST = [10 ** (-1), 10 ** (-2), 10 ** (-3), 10 ** (-4), 10 ** (-5)]
     #for ber in BER_TEST:
-    #    b(ber)
-    b(1)
+        #b(ber)
+    b(0)
 
 
 if __name__ == '__main__':

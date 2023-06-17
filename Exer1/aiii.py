@@ -93,8 +93,8 @@ def codHamming74(binario):
 def decodHamming74(binario):
     temp = 0
     decod = ""
-    while temp != len(binario):
-        temp += 8
+    while temp < len(binario):
+        temp += 7
         m3 = int(binario[temp - 4])
         m2 = int(binario[temp - 5])
         m1 = int(binario[temp - 6])
@@ -155,18 +155,20 @@ def a(ber):
     readFile = read_file("alice29.txt")
     # Conversão
     binSeq = binConvert(readFile)
+    print(len(binSeq))
     # Codificação
     cod = codHamming74(binSeq)
     # BSC
-    binSeqBSC = bsc(binSeq, ber)
-    # Numero total de bits que passam no BSC (one way)
-    print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
+    binSeqBSC = bsc(cod, ber)
     # Descodificação
     decod = decodHamming74(binSeqBSC)
+    print(len(decod))
     # Reconversão
     final = bin_to_string(decod)
     # Contagem de BER
-    calc_ber = BER(binSeq, binSeqBSC)
+    calc_ber = BER(binSeq, decod)
+    # Numero total de bits que passam no BSC (one way)
+    print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Apresentação de Resultados
     print(f"Given input BER was {ber} but calculated was {calc_ber} \n")
     # Numero de Símbolos diferentes nos transmitido e recebido
@@ -177,8 +179,8 @@ def a(ber):
 def main():
     BER_TEST = [10**(-1), 10**(-2), 10**(-3), 10**(-4), 10**(-5)]
     #for ber in BER_TEST:
-    #    a(ber)
-    a(0)
+        #a(ber)
+    a(0.01)
 
 
 if __name__ == '__main__':

@@ -76,18 +76,9 @@ def BER(before, after):
 
 # Codificador de Código de repetição(3,1)
 def codRep31(input):
-    # conversao para string binario
-    binario = ""
-    for caracter in input:
-        valor_numerico = ord(caracter)
-        binario += bin(valor_numerico)[2:].zfill(8)  # Adiciona zeros à esquerda se necessário
-
-    if len(binario) % 8 != 0:
-        binario = binario.zfill(
-            (len(binario) // 8 + 1) * 8)  # Completa com zeros à esquerda se a sequência não for múltipla de 8
     # tecnica de repetição
     cod = ""
-    for i in binario:
+    for i in input:
         cod += i
         cod += i
         cod += i
@@ -98,15 +89,15 @@ def codRep31(input):
 def decodRep31(input):
     decod = ""
     i = 0
-    while (i != len(input)):
+    while i < len(input):
         ones = 0
         zeros = 0
         for v in range(i, i + 2):
-            if (input[v] == "1"):
+            if input[v] == "1":
                 ones += 1
             else:
                 zeros += 1
-        if (zeros > ones):
+        if zeros > ones:
             decod += "0"
         else:
             decod += "1"
@@ -134,15 +125,15 @@ def a(ber):
     # Codificação
     cod = codRep31(binSeq)
     # BSC
-    binSeqBSC = bsc(binSeq, ber)
-    # Numero total de bits que passam no BSC (one way)
-    print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
+    binSeqBSC = bsc(cod, ber)
     # Descodificação
     decod = decodRep31(binSeqBSC)
     # Reconversão
     final = bin_to_string(decod)
     # Contagem de BER
-    calc_ber = BER(binSeq, binSeqBSC)
+    calc_ber = BER(binSeq, decod)
+    # Numero total de bits que passam no BSC (one way)
+    print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Apresentação de Resultados
     print(f"Given input BER was {ber} but calculated was {calc_ber} \n")
     # Numero de Símbolos diferentes nos transmitido e recebido
@@ -154,6 +145,9 @@ def main():
     BER_TEST = [10 ** (-1), 10 ** (-2), 10 ** (-3), 10 ** (-4), 10 ** (-5)]
     for ber in BER_TEST:
         a(ber)
+###############################################################
+# FUNCIONAL
+###############################################################
 
 
 if __name__ == '__main__':
