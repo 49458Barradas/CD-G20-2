@@ -1,5 +1,9 @@
 import random
+import warnings
+
 import numpy as np
+from PIL import Image
+import matplotlib.pyplot as plt
 
 
 ###############################################################
@@ -80,9 +84,40 @@ def BER(before, after):
 
 
 # Compara dois Strings e retorna o número de Caractéres distintos entre os dois
-def compareEqualStr(str1, str2):
-    #VAI RECEBER CADA STRING, REALIZAR CONTAGEM DE FREQUENCIAS E PRONTO APRESENTAR SOBRE FORMA GRAFICA
+def compareCharPresense(str1, str2):
+    asciiLetter = []
+    asciiCount = []
+    for i in range(len(str1)):
+        if str1[i] in asciiLetter:
+            asciiCount[asciiLetter.index(str1[i])] += 1
+        else:
+            if str1[i] != ' ' and str1[i] != '\n':
+                asciiLetter += [str1[i]]
+                asciiCount += [1]
+    asciiLetter2 = []
+    asciiCount2 = []
+    for i in range(len(str2)):
+        if str2[i] in asciiLetter2:
+            asciiCount2[asciiLetter2.index(str2[i])] += 1
+        else:
+            if str2[i] != ' ' and str2[i] != '\n':
+                asciiLetter2 += [str2[i]]
+                asciiCount2 += [1]
 
+    # Plotagem dos resultados
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=UserWarning)  # Ignore specific warning category
+        plt.bar(range(len(asciiLetter)), asciiCount, align='center', alpha=0.5, label='String 1')
+        plt.bar(range(len(asciiLetter2)), asciiCount2, align='center', alpha=0.5, label='String 2')
+        plt.xticks(range(len(asciiLetter)), asciiLetter)
+        plt.xlabel('Caractere')
+        plt.ylabel('Contagem')
+
+        # Ajustar a posição do gráfico adicionando margens ao eixo x
+        plt.xlim(-0.5, len(asciiLetter) - 0.5)
+
+        plt.legend()
+        plt.show()
 
 # Função de Interleaving
 def interleaving(str):
@@ -147,17 +182,15 @@ def b(ber):
     # Numero total de bits que passam no BSC (one way)
     print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Comparação de BER's
-    print(f"Given input BER was {ber} but calculated was {calc_ber}")
+    print(f"Given input BER was {ber} but calculated was {calc_ber} \n")
     # Numero de Símbolos diferentes nos transmitido e recebido
-    symbDifs = compareEqualStr(readFile, deinterleaved)
-    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido. \n")
+    compareCharPresense(readFile, deinterleaved)
 
 
 def main():
     BER_TEST = [10 ** (-1), 10 ** (-2), 10 ** (-3), 10 ** (-4), 10 ** (-5)]
-    #for ber in BER_TEST:
-        #b(ber)
-    b(0.01)
+    for ber in BER_TEST:
+        b(ber)
 
 if __name__ == '__main__':
     main()
