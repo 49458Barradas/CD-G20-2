@@ -206,7 +206,7 @@ def b(ber):
     # desinterleaving
     deinterleaved = deinterleaving(final)
     # Contagem de BER
-    calc_ber = BER(binSeq, binSeq)
+    calc_ber = BER(binSeq, decod)
     # Numero total de bits que passam no BSC (one way)
     print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Comparação de BER's
@@ -220,6 +220,9 @@ def main():
     for ber in BER_TEST:
         b(ber)
 
+###############################################################
+# FUNCIONAL
+###############################################################
 
 if __name__ == '__main__':
     main()
