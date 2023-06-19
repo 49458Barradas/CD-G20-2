@@ -23,8 +23,8 @@ def bsc(binSeq, BER):
 
 
 # File to String
-def read_file(path_to_file):
-    with open(path_to_file, 'r') as f:
+def read_file(path_to_file, encoding='utf-8'):
+    with open(path_to_file, 'r', encoding=encoding) as f:
         data = f.read()
         f.close()
     return data
@@ -92,7 +92,7 @@ def compareEqualStr(str1, str2):
 # Solução Exercicio
 def a(ber):
     # Leitura
-    readFile = read_file("alice29.txt")
+    readFile = read_file("Arquivo Pessoa_ Obra Édita - V - Há metafísica bastante em não pensar em nada. -.html")
     # Conversão
     binSeq = binConvert(readFile)
     # BSC
