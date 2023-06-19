@@ -14,12 +14,14 @@ def get_fletcher32(data: str):
     Returns the Fletcher32 checksum value in decimal and hexadecimal format.
     16-bit implementation (32-bit checksum)
     """
-    sum1, sum2 = 0xFFFF, 0xFFFF
+    sum1, sum2 = int(), int()
+    data = data.encode()
     for index in range(len(data)):
-        sum1 = (sum1 + ord(data[index])) % 65535
+        sum1 = (sum1 + data[index]) % 65535
         sum2 = (sum2 + sum1) % 65535
     result = (sum2 << 16) | sum1
     return result
+
 
 def main():
     received_data = ""
@@ -40,6 +42,7 @@ def main():
             print(f"Received checksum is {temp} but calculated was {temp_checksum}")
         idx += 1
         i += 48
+    print(received_data)
 
 if __name__ == '__main__':
     main()
