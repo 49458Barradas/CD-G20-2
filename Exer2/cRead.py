@@ -60,6 +60,8 @@ def main():
         if temp_checksum != temp:
             print(f"Received checksum is {temp} but calculated was {temp_checksum}")
             #break
+        else:
+            print(int(data[idx], 2))
         idx += 1
         i += 48
 

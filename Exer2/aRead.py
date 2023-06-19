@@ -23,6 +23,7 @@ def main():
         print(data)
         if temp == "#":
             break
+    print(data)
 
 
 if __name__ == '__main__':

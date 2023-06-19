@@ -24,7 +24,7 @@ def bsc(binSeq, BER):
 
 # File to String
 def read_file(path_to_file):
-    with open(path_to_file, 'r') as f:
+    with open(path_to_file, 'r', encoding='utf-8') as f:
         data = f.read()
         f.close()
     return data
@@ -164,7 +164,7 @@ def compareEqualStr(str1, str2):
 # Solução Exercicio
 def a(ber):
     # Leitura
-    readFile = read_file("alice29.txt")
+    readFile = read_file("KotlinFile.kt")
     # Conversão
     binSeq = binConvert(readFile)
     # Codificação

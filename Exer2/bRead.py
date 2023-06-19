@@ -43,7 +43,7 @@ def bsc(binSeq, BER):
 
 
 def main():
-    ber = 0
+    ber = 0.01
     # RECEBER DATA
     received_data = ""
     while len(received_data) != 6 * 16 + 32 * 6:
@@ -66,6 +66,8 @@ def main():
         if temp_checksum != temp:
             print(f"Received checksum is {temp} but calculated was {temp_checksum}")
             #break
+        else:
+            print(int(data[idx], 2))
         idx += 1
         i += 48
 

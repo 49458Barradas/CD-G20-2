@@ -92,7 +92,7 @@ def compareEqualStr(str1, str2):
 # Solução Exercicio
 def a(ber):
     # Leitura
-    readFile = read_file("Arquivo Pessoa_ Obra Édita - V - Há metafísica bastante em não pensar em nada. -.html")
+    readFile = read_file("Caeiro.txt")
     # Conversão
     binSeq = binConvert(readFile)
     # BSC
