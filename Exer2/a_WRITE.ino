@@ -8,11 +8,10 @@ int* termos;       // Ponteiro para armazenar os termos calculados
 void setup() {
   Serial.begin(9600);
   termos = new int[n];
-  checksums = new int[n];
 }
 
 void loop() {
-  // Calcular os termos (32 bits)
+  // Calcular os termos
   for (int i = 0; i < n; i++) {
     int termo = u;
     for (int j = 1; j <= i; j++) {

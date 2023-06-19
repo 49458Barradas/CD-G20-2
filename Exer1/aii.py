@@ -144,10 +144,10 @@ def a(ber):
     # Numero total de bits que passam no BSC (one way)
     print(f"Número total de bits que passam no BSC (one way) é {len(binSeqBSC)}")
     # Apresentação de Resultados
-    print(f"Given input BER was {ber} but calculated was {calc_ber} \n")
+    print(f"Given input BER was {ber} but calculated was {calc_ber}")
     # Numero de Símbolos diferentes nos transmitido e recebido
     symbDifs = compareEqualStr(readFile, final)
-    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido.")
+    print(f"Existem {symbDifs} símbolos diferentes entre ficheiro transmitido e recebido. \n")
 
 
 def main():

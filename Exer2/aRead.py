@@ -13,7 +13,7 @@ def main():
         data = ""
         end = False
         while not end:
-            temp = ser.read().decode()
+            temp = ser.read()
             if temp == "#":
                 break
             if temp != ",":
