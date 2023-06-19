@@ -43,7 +43,7 @@ def bsc(binSeq, BER):
 
 
 def main():
-    ber = 0.01
+    ber = 0
     # RECEBER DATA
     received_data = ""
     while len(received_data) != 6 * 16 + 32 * 6:
