@@ -8,18 +8,19 @@ porta_serial = "COM3"
 ser = serial.Serial(porta_serial, 9600, timeout=1)
 
 
-def fletcher32_checksum(data):
-    sum1 = 0xFFFF
-    sum2 = 0xFFFF
-
-    for i in range(2):
-        byte = ord(data[i]) - ord('0')  # Convert char to numeric value
-        sum1 = (sum1 + byte) & 0xFFFF
-        sum2 = (sum2 + sum1) & 0xFFFF
-
-    checksum = (sum2 << 16) | sum1
-    return checksum
-
+def get_fletcher32(data):
+    """
+    Accepts a string as input.
+    Returns the Fletcher32 checksum value as an integer.
+    16-bit implementation (32-bit checksum)
+    """
+    sum1, sum2 = int(), int()
+    data = data.encode()
+    for index in range(len(data)):
+        sum1 = (sum1 + data[index]) % 65535
+        sum2 = (sum2 + sum1) % 65535
+    result = (sum2 << 16) | sum1
+    return result
 
 def main():
     received_data = ""
@@ -53,13 +54,11 @@ def main():
     received_data_no_chksum = received_data_no_chksum[:-1]
     calc_cheks = []
     i = 0
-    #UM DOS CHECKSUMS ESTA MAL (OU SEJA OU NO C OU AQUI NO PYTHON)
     while i < len(received_data_no_chksum):
         temp = received_data_no_chksum[i] + received_data_no_chksum[i+1]
-        chksc = fletcher32_checksum(temp)
+        chksc = get_fletcher32(temp)
         calc_cheks.append(chksc)
         i += 2
-    print(calc_cheks)
 
 
 

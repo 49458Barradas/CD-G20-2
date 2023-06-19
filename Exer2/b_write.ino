@@ -10,18 +10,17 @@ void setup() {
   termos = new int[n];
 }
 
-uint32_t fletcher32_checksum(const String& data) {
-  uint32_t sum1 = 0xFFFF;
-  uint32_t sum2 = 0xFFFF;
+uint32_t get_fletcher32(const String& data) {
+    uint32_t sum1 = 0xFFFF;
+    uint32_t sum2 = 0xFFFF;
 
-  for (int i = 0; i < 2; i++) {
-    uint8_t byte = data.charAt(i) - '0'; // Convert char to numeric value
-    sum1 = (sum1 + byte) & 0xFFFF;
-    sum2 = (sum2 + sum1) & 0xFFFF;
-  }
+    for (int index = 0; index < data.length(); index++) {
+        sum1 = (sum1 + data[index]) % 65535;
+        sum2 = (sum2 + sum1) % 65535;
+    }
 
-  uint32_t checksum = (sum2 << 16) | sum1;
-  return checksum;
+    uint32_t result = (sum2 << 16) | sum1;
+    return result;
 }
 
 void loop() {
@@ -40,7 +39,7 @@ void loop() {
   //agora separar 2 char dentro do string de cada vez
   for(int l=0; l<temp.length(); l = l + 2){
     String checksumInput = String(temp[l]) + String(temp[l+1]);
-    uint32_t checksum = fletcher32_checksum(checksumInput);
+    uint32_t checksum = get_fletcher32(checksumInput);
     send = checksumInput + "_" + String(checksum) + "_";
     Serial.print(send);
   }
